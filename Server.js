@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const cors = require('cors');
+const PackageRoutes = require("./Routers/PackageRoutes");
 
 const app = express();
 
@@ -14,10 +15,12 @@ app.get("/", (req, res) => {
 
 const UserRoutes = require("./Routers/UserRoutes");
 app.use("/api/user", UserRoutes);
+app.use("/api/packages", PackageRoutes);
 
 mongoose.connect(process.env.MONGO_URL)
 .then(() => {
     console.log("Connected to MongoDB successfully");
+     console.log("Database Name:", mongoose.connection.name);
 })
 .catch((err) => {
     console.log("Error connecting to MongoDB", err);
@@ -31,5 +34,8 @@ app.listen(PORT, () => {
 app.get("/", (req, res) => {
     res.send("Travique Backend Running");
 });
+const Package = require("./Models/PackageModel");
+
+
 
 
