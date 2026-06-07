@@ -5,7 +5,15 @@ const Package = require("../Models/PackageModel");
 // GET ALL PACKAGES
 router.get("/", async (req, res) => {
     try {
-        const packages = await Package.find();
+        const { category, destination } = req.query;
+        let query = {};
+        if (category) {
+            query.category = { $regex: new RegExp(category, 'i') };
+        }
+        if (destination) {
+            query.destination = { $regex: new RegExp(destination, 'i') };
+        }
+        const packages = await Package.find(query);
         res.json(packages);
     } catch (error) {
         res.status(500).json({ message: error.message });
