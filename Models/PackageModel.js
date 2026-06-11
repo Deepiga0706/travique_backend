@@ -24,8 +24,7 @@ const PackageSchema = new mongoose.Schema({
     },
 
     destination: {
-        type: String,
-        required: true
+        type: String
     },
 
     price: {
@@ -34,8 +33,7 @@ const PackageSchema = new mongoose.Schema({
     },
 
     duration: {
-        type: String,
-        required: true
+        type: String
     },
 
     description: {

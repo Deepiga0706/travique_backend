@@ -29,10 +29,19 @@ router.post("/packages", async (req, res) => {
     const exists = await Package.findOne({ slug });
     if (exists) return res.status(400).json({ message: "A package with this slug already exists" });
 
-    const pkg = await Package.create({ title, slug, description, price: Number(price), duration, category, location, image, gallery, highlights });
+    const pkg = await Package.create({
+      title, slug, description,
+      price: Number(price),
+      duration: duration || '',
+      category: category || 'general',
+      destination: location || '',   // form sends 'location', model field is 'destination'
+      image: image || '',
+      gallery: gallery || [],
+      highlights: highlights || [],
+    });
     res.status(201).json({ message: "Package created", package: pkg });
   } catch (err) {
-    res.status(500).json({ message: "Server error", error: err.message });
+    res.status(500).json({ message: err.message });
   }
 });
 

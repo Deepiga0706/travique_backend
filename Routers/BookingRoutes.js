@@ -3,7 +3,7 @@ const router = express.Router();
 
 const {
   createBooking,
-} = require("../controllers/BookingController");
+} = require("../Controllers/BookingController");
 
 router.post("/", createBooking);
 
