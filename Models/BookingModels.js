@@ -14,6 +14,9 @@ const bookingSchema = new mongoose.Schema(
       required: true,
     },
 
+    // ── Package image ───────────────────────
+    packageImage: { type: String, default: '' },
+
     // ── Customer details ───────────────────
     customerName: { type: String, required: true },
     email:        { type: String, required: true },
