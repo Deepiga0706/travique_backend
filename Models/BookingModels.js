@@ -6,7 +6,6 @@ const bookingSchema = new mongoose.Schema(
     // ── Package reference ──────────────────
     packageId: {
       type: mongoose.Schema.Types.Mixed,   // accepts ObjectId or slug string
-      ref: "Package",
       required: false,
     },
     packageName: {
